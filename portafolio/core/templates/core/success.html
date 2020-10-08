@@ -1,0 +1,35 @@
+{% extends 'core/base/layout.html' %} {% load static %} {% block content %}
+<!-- Breadcrumb Area Start -->
+<section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url({% static 'core/img/bg-img/38.jpg' %});">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="breadcrumb-content text-center">
+                    <h2 class="page-title">Contacto</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="icon_house_alt"></i> Inicio</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Mensaje</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Area End -->
+<!--Message confirmation-->
+<div class="container">
+    <div class="row mt-50">
+        <div class="col-12">
+            <h1 class="text-center" style="color: #fc6060">Su mensaje fue enviado exitosamente</h1>
+        </div>
+    </div>
+    <div class="row mt-100 mb-100">
+        <div class="col-12 text-center">
+            <a href="{% url 'home' %}" class="btn btn-dark">Presiona para volver a la pagina principal</a>
+        </div>
+    </div>
+</div>
+<!--Message confirmation End-->
+{% endblock content %}

@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+    <title>Jhon Mármol</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'core/img/core-img/favicon1.png' %}">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/main.css' %}">
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- /Preloader -->
+
+    <!-- Top Search Form Area -->
+    <div class="top-search-area">
+        <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <!-- Close -->
+                        <button type="button" class="btn close-btn" data-dismiss="modal"><i class="ti-close"></i></button>
+                        <!-- Form -->
+                        <form action="index.html" method="post">
+                            <input type="search" name="top-search-bar" id="top-search-bar" class="form-control" placeholder="Search and hit enter...">
+                            <button type="submit" id="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Area Start -->
+    <header class="header-area">
+        <!-- Main Header Start -->
+        <div class="main-header-area">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Classy Menu -->
+                    <nav class="classy-navbar justify-content-between" id="alimeNav">
+
+                        <!-- Logo -->
+                        <a class="nav-brand" href="{% url 'home' %}"><img style="width: 200px;" src="{% static 'core/img/core-img/logo.png' %}" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+                            <!-- Menu Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul id="nav">
+                                    <li class="{% if request.path == '/' %}active{% endif %}"><a href="{% url 'home' %}">Inicio</a></li>
+                                    <li class="{% if request.path == '/about/' %}active{% endif %}"><a href="{% url 'about' %}">Acerca de Mi</a></li>
+                                    <li class="{% if request.path == '/projects/' %}active{% endif %}"><a href="{% url 'projects' %}">Proyectos</a></li>
+                                    <li class="{% if request.path == '/career/' %}active{% endif %}"><a href="{% url 'career' %}">Carrera</a></li>
+                                    <li class="{% if request.path == '/contact/' %}active{% endif %}"><a href="{% url 'contact' %}">Contacto</a></li>
+                                    <li><a href="#">Descubrir</a>
+                                        <ul class="dropdown">
+                                            <li><a href="{% url 'coming' %}">- Message Chat</a></li>
+                                            <li><a href="{% url 'coming' %}">- Cotizador</a></li>
+                                            <li><a href="{% url 'coming' %}">- Proximamente...</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                                <!-- Search Icon -->
+                                <div class="search-icon" data-toggle="modal" data-target="#searchModal"><i class="ti-search"></i></div>
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Area End -->
+
+    {% block content %} {% endblock content %}
+
+    <!-- Footer Area Start -->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="footer-content d-flex align-items-center justify-content-between">
+                        <!-- Copywrite Text -->
+                        <div class="copywrite-text">
+                            <p>
+                                Copyright &copy;
+                                <script>
+                                    document.write(new Date().getFullYear());
+                                </script> Todos los derechos reservados
+                            </p>
+                        </div>
+                        <!-- Footer Logo -->
+                        <div class="footer-logo">
+                            <a href="{% url 'home' %}"><img src="{% static 'core/img/core-img/logo3.png' %}" alt="" style="width: 100px;"></a>
+                        </div>
+                        <!-- Social Info -->
+                        <div class="social-info">
+                            <a href="https://www.facebook.com/jhonfredypicachu" target="_blank"><i class="ti-facebook" aria-hidden="true"></i></a>
+                            <a href="https://www.twitter.com/jhonfmg" target="_blank"><i class="ti-twitter-alt" aria-hidden="true"></i></a>
+                            <a href="https://www.linkedin.com/in/jhon-mármol-gómez-017018180/" target="_blank"><i class="ti-linkedin" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row text-hide">
+                <div class="copywrite-text">
+                    <p style="font-size: 8px;">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Area End -->
+
+    <!-- **** All JS Files ***** -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162670236-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-162670236-1');
+    </script>
+
+    <!-- jQuery 2.2.4 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha512-DUC8yqWf7ez3JD1jszxCWSVB0DMP78eOyBpMa5aJki1bIRARykviOuImIczkxlj1KhVSyS16w2FSQetkD4UU2w==" crossorigin="anonymous"></script>
+    <!-- Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.3/umd/popper.min.js" integrity="sha512-53CQcu9ciJDlqhK7UD8dZZ+TF2PFGZrOngEYM/8qucuQba+a+BXOIRsp9PoMNJI3ZeLMVNIxIfZLbG/CdHI5PA==" crossorigin="anonymous"></script>
+    <!-- Bootstrap -->
+    <script src="{% static 'core/js/bootstrap.min.js' %}"></script>
+    <!-- All Plugins -->
+    <script src="{% static 'core/js/alime.bundle.js' %}"></script>
+    <script src="{% static 'core/js/main.js' %}"></script>
+    <!-- Active -->
+    <script src="{% static 'core/js/default-assets/active.js' %}"></script>
+    <script src="{% static 'core/js/contact.js' %}"></script>
+</body>
+
+</html>

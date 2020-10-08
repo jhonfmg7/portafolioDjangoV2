@@ -1,0 +1,75 @@
+{% extends 'core/base/layout.html' %} {% load static %} {% block content %}
+<!-- Breadcrumb Area Start -->
+<section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url({% static 'core/img/bg-img/1_1.jpg' %});">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="breadcrumb-content text-center">
+                    <h2 class="page-title">Carrera</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="icon_house_alt"></i> Inicio</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Carrera</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Area End -->
+
+<!-- Start timeline Area -->
+<br>
+<section class="timeline pb-120">
+    <div class="text-center">
+        <div class="menu-content pb-70">
+            <div class="title text-center">
+                <h1 class="mb-10" style="color: #fc6060;">Mis Logros</h1>
+                <p>Un logro no es una finalización, es simplemente una plataforma para ir por el siguiente.</p>
+            </div>
+        </div>
+    </div>
+    <ul>
+        {% for career in careers %}
+			<li>
+				<div class="content">
+					{% if career.image %}
+						<img class="img-fluid mx-auto d-block mb-30" style="max-width: 100px" src={{career.image.url}} alt="">
+					{% endif %}
+                    {% if career.important_title %}
+                        <h1 class="text-center" style="color: #fc6060;">{{career.important_title}}</h1>
+                    {% endif %}
+                    {% if career.title %}
+                        <h4>
+                            <time>{{career.title}}</time>
+                        </h4>
+                    {% endif %}
+					<p>{{career.institution}}</p>
+                    {% if career.place %}
+                        <p><b>Lugar:</b> {{career.place}}</p>
+                    {% endif %}
+					<p><b>Periodo:</b> {{career.session}}</p>
+					{% if career.result %}
+						<p><b>Calificación:</b> {{career.result}} (In the Scale of {{career.result|floatformat:"0"}})</p>
+					{% endif %}
+                    <ul style="margin-top: 20px;">
+                        {% for achievement in career.achievements.all %}
+                            <li style="width: 80%;" class="list_order">{{achievement.title}}</li>
+                        {% endfor %}
+                    </ul>
+				</div>
+			</li>
+        {% endfor %}
+    </ul>
+</section>
+
+    <div class="container"> 
+        <div class="text-center mt-30">
+            <h1 class="wow fadeInUp" data-wow-delay="500ms" style="margin-top: 6rem;">Consigue una Cotización</h1>
+            <a class="btn alime-btn btn-2 mt-30 wow fadeInUp" data-wow-delay="500ms" href="{% url 'contact' %}">Contáctanos</a>
+        </div>
+    </div>
+
+<!-- End timeline Area -->
+{% endblock content %}

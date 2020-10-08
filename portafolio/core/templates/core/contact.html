@@ -1,0 +1,90 @@
+{% extends 'core/base/layout.html' %} {% load static %} {% block content %}
+<!-- Breadcrumb Area Start -->
+<section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url({% static 'core/img/bg-img/1_1.jpg' %});">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="breadcrumb-content text-center">
+                    <h2 class="page-title">Contacto</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="icon_house_alt"></i> Inicio</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Contacto</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Area End -->
+
+<!-- Contact Area Start -->
+<div class="contact-area section-padding-80-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <h2 class="contact-title mb-30">Vamos a<br> Trabajar Juntos</h2>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <!-- Contact Info -->
+                <div class="contact-info mb-30">
+                    <p>Email</p>
+                    <a href="mailto:jfmarmolg@gmail.com">jfmarmolg@gmail.com</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <!-- Contact Info -->
+                <div class="contact-info mb-30">
+                    <p>Comunicate conmigo</p>
+                    <a href="https://www.linkedin.com/in/jhon-m%C3%A1rmol-g%C3%B3mez-017018180" target="_blank">LinkedIn</a>
+                </div>
+                <!-- Contact Info -->
+                <div class="contact-info mb-30">
+                    <p>Teléfono Fijo</p>
+                    <a href="#">(031) 7598622</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact Area End -->
+
+<!-- Form Contact Start-->
+<div class="container mb-5">
+    <form method="POST" id="form_contact">{% csrf_token %}
+        <div class="form-group">
+            <label for="name" style="color: #fc6060; font-weight: bold;">Nombre:</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Ingresa tu Nombre de Contacto">
+        </div>
+        <div class="form-group">
+            <label for="email" style="color: #fc6060; font-weight: bold;">Dirección de Correo Electrónico:</label>
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Escribe tu Email">
+            <small id="emailHelp" class="form-text text-muted"> Tu correo no será compartido con nadie, es solicitado solo como manera de contacto.</small>
+        </div>
+        <div class="form-group">
+            <textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Escribre tu mensaje..."></textarea>
+        </div>
+        <small id="emailHelp" class="form-text text-muted mb-4"> *Todos los campos son obligatorios.</small>
+        <button type="submit" id="btn_contact" class="btn btn-primary" style="background-color: #fc6060!important; border: none;">Enviar Mensaje</button>
+    </form>
+</div>
+<!-- Form Contact End-->
+
+<!-- Follow Area Start -->
+<div class="follow-area clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading text-center">
+                    <h2>Sígueme en Instagram</h2>
+                    <p>@jhonfmg</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'core/base/instagram_feed.html' %}
+</div>
+<!-- Follow Area End -->
+{% endblock content %}

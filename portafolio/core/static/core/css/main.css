@@ -1,0 +1,9 @@
+.list_order:before {
+    left: -6%!important;
+    top: 2%!important;
+}
+
+.list_order {
+    background-color: white!important;
+    margin-bottom: 0px!important;
+}

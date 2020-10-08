@@ -1,0 +1,114 @@
+{% extends 'core/base/layout.html' %} {% load static %} {% block content %}
+<!-- Breadcrumb Area Start -->
+<section class="breadcrumb-area bg-img bg-overlay jarallax" style="background-image: url({% static 'core/img/bg-img/1_1.jpg' %});">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="breadcrumb-content text-center">
+                    <h2 class="page-title">Proyectos</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="icon_house_alt"></i> Inicio</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Proyectos</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Area End -->
+<div class="site-section" id="portfolio-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <form action="/projects/">
+                    <div class="form-group">
+                        <label for="">Ordenar Proyectos Por:</label>
+                        <select name="select" id="select" class="form-control">
+                          <option value="">-- Seleccione --</option>
+                          <option {% if request.GET.select == 'date' %}selected{% endif %} value="date">Fecha de Realización</option>
+                          <option {% if request.GET.select == 'relevance' %}selected{% endif %} value="relevance">Relevancia del Proyecto</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-xs-12">
+                            {% if request.GET %}
+                            {% else %}
+                                <p style="font-size: .5rem;">* Los proyectos vienen ordenados por fecha de publicación</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% if request.GET %}
+                    <a href="/projects" class="btn btn-danger"><i class="fa fa-times"></i> filtro</a> {% endif %}
+                    <input type="submit" class="btn btn-success mr-0 col-md-1 float-right mb-5" style="background-color: #fc6060; border: none;">
+                </form>
+            </div>
+        </div>
+        <div class="row mb-5 ">
+            <div class="col-md-12 section-title text-center mx-0">
+                <span class="sub-title mb-2 d-block">Trabajos Recientes</span>
+                <h2 class="title text-primary mb-3" style="color: #fc6060!important; font-size: 1.5rem">"El éxito no se logra sólo con cualidades especiales. Es sobre todo un trabajo de constancia, de método y de organización" <br> – Victor Hugo -</h2>
+            </div>
+        </div>
+        {% for project in projects %}
+        <div class="row mb-5">
+            {% if project.id|divisibleby:2 %}
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <img src={{project.image1.url}} alt="Image" class="img-fluid" class="img-fluid">
+                <img src={{project.image2.url}} alt="Image" class="img-fluid" class="img-fluid">
+            </div>
+            <div class="col-lg-5 h-100 jm-sticky-top ml-auto">
+                <h3>{{project.title}}</h3>
+                <p class="mb-4">{{project.content|safe}}</p>
+                <p class="mb-5"><strong class="text-black">Role:</strong> {% for category in project.role.all %}
+                    <span class="border p-2">{{category.name}}</span> {% endfor %}
+                </p>
+                <p><strong class="text-black">Fecha de Inicio: </strong>{{project.date_start|date:"d M, Y"}}</p>
+                <p><strong class="text-black">Fecha de Finalización: </strong>{{project.date_end|date:"d M, Y"}}</p>
+                <br>
+                <blockquote class="blockquote">
+                    <p>{{project.comment}}</p>
+                    <p class="mb-0 d-flex align-items-center">
+                        <img class="img-fluid mr-3" src={{project.author_image.url}} alt="Image">
+                        <cite>&mdash; {{project.author_comment}}</cite>
+                    </p>
+                </blockquote>
+                <p class="mb-4"><a href={{project.url}} target="_blank" class="readmore">Visit website</a></p>
+            </div>
+            {% else %}
+            <div class="col-lg-6 order-1 order-lg-2 mb-4 mb-lg-0">
+                <img src={{project.image1.url}} alt="Image" class="img-fluid" class="img-fluid">
+                <img src={{project.image2.url}} alt="Image" class="img-fluid" class="img-fluid">
+            </div>
+            <div class="col-lg-5 h-100 jm-sticky-top mr-auto order-2 order-lg-1">
+                <h3>{{project.title}}</h3>
+                <p class="mb-4">{{project.content|safe}}</p>
+                <p class="mb-5"><strong class="text-black">Role:</strong> {% for category in project.role.all %}
+                    <span class="border p-2">{{category.name}}</span> {% endfor %}
+                </p>
+                <p><strong class="text-black">Fecha de Inicio: </strong>{{project.date_start|date:"d M, Y"}}</p>
+                <p><strong class="text-black">Fecha de Finalización: </strong>{{project.date_end|date:"d M, Y"}}</p>
+                <br>
+                <blockquote class="blockquote">
+                    <p>{{project.comment}}</p>
+                    <p class="mb-0 d-flex align-items-center">
+                        <img class="img-fluid mr-3" src={{project.author_image.url}} alt="Image">
+                        <cite>&mdash; {{project.author_comment}}</cite>
+                    </p>
+                </blockquote>
+                <p class="mb-4"><a href={{project.url}} target="_blank" class="readmore">Visit website</a></p>
+            </div>
+            {% endif %}
+        </div>
+        <hr> {% endfor %}
+    </div>
+    <div class="container">
+        <div class="text-center mt-30">
+            <h1 class="wow fadeInUp" data-wow-delay="500ms" style="margin-top: 6rem;">Consigue una Cotización</h1>
+            <a class="btn alime-btn btn-2 mt-30 wow fadeInUp" data-wow-delay="500ms" href="{% url 'contact' %}">Contáctanos</a>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock content %}

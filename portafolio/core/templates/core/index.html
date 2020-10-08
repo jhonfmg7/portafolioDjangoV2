@@ -1,0 +1,139 @@
+{% extends 'core/base/layout.html' %} {% block content %} {% load static %}
+
+<!-- Welcome Area Start -->
+<section class="welcome-area">
+    <div class="welcome-slides owl-carousel">
+        <!-- Single Slide -->
+        <div class="single-welcome-slide bg-img bg-overlay" style="background-image: url({% static 'core/img/bg-img/1_1.jpg' %});">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <!-- Welcome Text -->
+                    <div class="col-12 col-lg-8 col-xl-6">
+                        <div class="welcome-text">
+                            <h2 data-animation="bounceInDown" data-delay="900ms">Hola, Soy Jhon Mármol</h2>
+                            <p data-animation="bounceInDown" data-delay="500ms"><br>Soy Geólogo de la Universidad Nacional de Colombia, con amplios conocimientos en labores Académicas y de Campo</p>
+                            <div class="hero-btn-group" data-animation="bounceInDown" data-delay="100ms">
+                                <a href="{% url 'contact' %}" class="btn alime-btn mb-3 mb-sm-0 mr-4">Consigue una Cotización</a>
+                                <a class="hero-mail-contact" href="mailto:jfmarmolg@gmail.com">jfmarmolg@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Single Slide -->
+        <div class="single-welcome-slide bg-img bg-overlay" style="background-image: url({% static 'core/img/bg-img/2_1.jpg' %});">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <!-- Welcome Text -->
+                    <div class="col-12 col-lg-8 col-xl-6">
+                        <div class="welcome-text">
+                            <h2 data-animation="bounceInUp" data-delay="100ms">Hello <br>I'm Jhon Mármol</h2>
+                            <p data-animation="bounceInUp" data-delay="500ms"><br>I'm Geologist from National University of Colombia, I have large knowledge in Academic and Field work</p>
+                            <div class="hero-btn-group" data-animation="bounceInUp" data-delay="900ms">
+                                <a href="{% url 'contact' %}" class="btn alime-btn mb-3 mb-sm-0 mr-4">Get a Quote</a>
+                                <a class="hero-mail-contact" href="mailto:jfmarmolg@gmail.com">jfmarmolg@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Welcome Area End -->
+
+<div class="row">
+    <div class="col-12">
+        <div class="text-center mt-50">
+            <h2 style="color: #fc6060">Servicios</h2>
+            <hr>
+        </div>
+    </div>
+</div>
+<div class="row mb-100">
+    <div class="col-4 mx-auto">
+        <h3 class="text-center">Geología</h3>
+        <ol>
+            {% for service in services %} {% if service.type_service == 'geo' %}
+            <li class="border text-center p-3">{{service.title}}</li>
+            <br> {% endif %} {% endfor %}
+        </ol>
+    </div>
+    <div class="col-4 mx-auto">
+        <h3 class="text-center">Programación y Desarrollo Web</h3>
+        <ul>
+            {% for service in services %} {% if service.type_service == 'web' %}
+            <li class="border text-center p-3">{{service.title}}</li>
+            <br> {% endif %} {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="text-center mt-50">
+            <h2 style="color: #fc6060">Algunas Fotografias de mis Viajes por Colombia</h2>
+            <hr>
+        </div>
+    </div>
+</div>
+
+<!-- Gallery Area Start -->
+<div class="alime-portfolio-area section-padding-80 clearfix">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <!-- Projects Menu -->
+                <div class="alime-projects-menu">
+                    <div class="portfolio-menu text-center">
+                        {% for tag in tags %} {% if tag.title == 'Todas' %}
+                        <button class="btn active" style="color: #fc6060;" data-filter={{tag.filter_search}}>{{tag.title}}</button> {% else %}
+                        <button class="btn" data-filter={{tag.filter_search}}>{{tag.title}}</button> {% endif %} {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row alime-portfolio">
+            {% for image in images %}
+            <!-- Single Gallery Item -->
+            <div class="col-12 col-sm-6 col-lg-3 single_gallery_item {% for tag in image.tags.all %} {{tag.name}} {% endfor %} mb-30 wow fadeInUp" data-wow-delay={{image.delay}}>
+                <div class="single-portfolio-content">
+                    <img src={{image.image}} alt="">
+                    <div class="hover-content">
+                        <a href={{image.image}} class="portfolio-img">+</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="row">
+            <div class="col-12 text-center wow fadeInUp" data-wow-delay="300ms">
+                <a href="{% url 'about' %}" class="btn alime-btn btn-2 mt-15">Saber más acerca de Jhon</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Gallery Area End -->
+
+<!-- Follow Area Start -->
+<section class="follow-area clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading text-center">
+                    <h2>Sígueme en Instagram</h2>
+                    <p>@jhonfmg</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'core/base/instagram_feed.html' %}
+</section>
+<!-- Follow Area End -->
+
+{% endblock content %}
